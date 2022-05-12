@@ -8,8 +8,7 @@ public:
         int n = v.size();
         int cnt = 1;
         
-        sort(v.begin(),v.end(),compare);
-        
+        sort(v.begin(),v.end(),compare);        
         int i=1;
         int last = v[0][1];
         
@@ -20,7 +19,8 @@ public:
             }
             i++;
         }
+        cnt = n-cnt;
         
-        return n-cnt;
+        return cnt;
     }
 };
