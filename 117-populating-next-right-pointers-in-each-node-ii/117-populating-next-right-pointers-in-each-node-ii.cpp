@@ -27,9 +27,9 @@ public:
         }
         
         while(!q.empty()){
-            int si = q.size();
             int cur = q.size();
-            while(si--){
+            
+            while(1){
                 Node* tp = q.front();
                 q.pop();
                 cur--;
