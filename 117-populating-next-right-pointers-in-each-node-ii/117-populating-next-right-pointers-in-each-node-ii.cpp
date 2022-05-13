@@ -18,7 +18,7 @@ public:
 
 class Solution {
 public:
-    Node* connect(Node* root) {
+    Node* connect(Node* &root) {
         queue<Node*> q;
         q.push(root);
         
@@ -49,8 +49,7 @@ public:
                 tp->next = q.front();  
             }
         }
-        
-        
+                
         return root;
     }
 };
