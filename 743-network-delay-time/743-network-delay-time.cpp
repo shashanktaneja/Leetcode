@@ -1,15 +1,12 @@
 class Solution {
-public:
-    map<int,vector<pair<int,int>>> mp;
-    int ans;
-    
+public:    
     int networkDelayTime(vector<vector<int>>& v, int n, int k) {
-        mp.clear();
+        vector<vector<pair<int,int>>> mp(n+1);
         for(int i=0;i<v.size();i++){
             mp[v[i][0]].push_back({v[i][1],v[i][2]});
         }
         
-        ans = INT_MIN;
+        int ans = INT_MIN;
         queue<pair<int,int> > q;
         q.push({k,0});
         int dis[n+1];
