@@ -14,7 +14,7 @@ public:
     int cnt;
     int ans;
     
-    void dfs1(int cur,TreeNode* root){
+    void dfs1(int cur,TreeNode* &root){
         if(root->left==NULL and root->right==NULL){
             if(cnt<cur){
                 cnt = cur;
@@ -31,7 +31,7 @@ public:
         }
     }
     
-    void dfs2(int cur,TreeNode* root){
+    void dfs2(int cur,TreeNode* &root){
         if(root->left==NULL and root->right==NULL){
             if(cur==cnt){
                 ans+=(root->val);
@@ -48,7 +48,7 @@ public:
         }
     }
     
-    int deepestLeavesSum(TreeNode* root) {
+    int deepestLeavesSum(TreeNode* &root) {
         cnt = INT_MIN,ans = 0;
         dfs1(0,root);
         dfs2(0,root);
