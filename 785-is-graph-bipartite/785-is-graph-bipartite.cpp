@@ -8,10 +8,12 @@ public:
         for(auto nbr:v[cur]){
             if(!vis[nbr]){
                 ans &= dfs(1-si,nbr,v,vis,gp);
+                if(ans==false){
+                    break;
+                }
             }
             else{
                 if(gp[nbr]==si){
-                    // cout<<"he"<<endl;
                     return false;
                 }
             }
@@ -29,8 +31,10 @@ public:
         for(int i=0;i<n;i++){
             if(!vis[i]){
                 bool tp = dfs(0,i,v,vis,gp);
-                // cout<<tp<<endl;
-                ans = ans&tp;
+                ans &= tp;
+                if(ans==false){
+                    break;
+                }
             }
         }
         
