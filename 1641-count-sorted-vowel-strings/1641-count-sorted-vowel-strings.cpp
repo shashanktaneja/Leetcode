@@ -15,11 +15,7 @@ public:
     }
     
     int countVowelStrings(int n) {
-        int ans = 0;
-        for(char ch = 'a';ch<='e';ch++){
-            ans += solve(n-1,ch);
-        }
-        
+        int ans = solve(n,'a');        
         return ans;
     }
 };
