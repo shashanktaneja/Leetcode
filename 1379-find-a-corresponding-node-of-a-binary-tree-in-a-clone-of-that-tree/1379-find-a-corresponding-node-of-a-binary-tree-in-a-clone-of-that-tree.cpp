@@ -9,25 +9,23 @@
  */
 
 class Solution {
-public:
-    TreeNode* getTargetCopy(TreeNode* original, TreeNode* root, TreeNode* t) {
-        queue<TreeNode*> q;
-        q.push(root);
+public:    
+    TreeNode* getTargetCopy(TreeNode* &o, TreeNode* &root, TreeNode* &t) {
+        if(root->val==t->val){
+            return root;
+        }
         
-        while(!q.empty()){
-            TreeNode* cur = q.front();
-            q.pop();
-            
-            if(cur->val==t->val){
-                return cur;
+        if(root->left){
+            TreeNode* temp = getTargetCopy(o,root->left,t);
+            if(temp!=NULL){
+                return temp;
             }
-            
-            if(cur->left){
-                q.push(cur->left);
-            }
-            
-            if(cur->right){
-                q.push(cur->right);
+        }
+
+        if(root->right){
+            TreeNode* temp = getTargetCopy(o,root->right,t);
+            if(temp!=NULL){
+                return temp;
             }
         }
         
