@@ -15,7 +15,6 @@ public:
         for(int k=0;k<4;k++){
             int nx = i+dx[k];
             int ny = j+dy[k];
-            // int cur = INT_MIN;
             
             if(nx>=0 and ny>=0 and nx<m and ny<n and v[nx][ny]>v[i][j]){
                 int cur = 1+solve(i+dx[k],j+dy[k],m,n,v);
@@ -42,12 +41,9 @@ public:
         for(int i=0;i<m;i++){
             for(int j=0;j<n;j++){
                 if(dp[i][j]==-1){
-                    int cur = solve(i,j,m,n,v);
-                    ans = max(cur,ans);
+                    solve(i,j,m,n,v);                    
                 }
-                else{
-                    ans = max(ans,dp[i][j]);
-                }
+                ans = max(ans,dp[i][j]);
             }
         }
                 
