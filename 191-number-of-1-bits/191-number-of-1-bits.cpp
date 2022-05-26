@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int hammingWeight(uint32_t n) {
+    int hammingWeight(uint32_t &n) {
         int ans = 0;
         while(n>0){
             int cur = (n&1);
