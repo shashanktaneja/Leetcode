@@ -1,6 +1,17 @@
 class Solution {
 public:
-    bool solve(int n,int sum,vector<int> &v){
+    bool canPartition(vector<int>& v) {
+        int n = v.size();
+        int sum = 0;
+        
+        for(int i=0;i<n;i++){
+            sum+=v[i];
+        }
+        
+        if(sum%2!=0){
+            return false;
+        }
+        
         int s = 0;
         
         for(int i=0;i<n;i++){
@@ -8,6 +19,8 @@ public:
         }
         
         int dp[n+1][s+1];
+        
+        sum/=2;
         
         for(int i=0;i<n;i++){
             for(int j=0;j<=sum;j++){
@@ -30,22 +43,5 @@ public:
         }
         
         return dp[n-1][sum];
-    }
-    
-    bool canPartition(vector<int>& v) {
-        int n = v.size();
-        int sum = 0;
-        
-        for(int i=0;i<n;i++){
-            sum+=v[i];
-        }
-        
-        if(sum%2!=0){
-            return false;
-        }
-        
-        bool ans = solve(n,sum/2,v);
-    
-        return ans;
     }
 };
