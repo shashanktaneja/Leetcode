@@ -20,18 +20,17 @@ public:
         }
         
         int i=1;
+        
         while(i<n){
             if(t[0]>v[i-1][1] and t[1]<v[i][0]){
                 v.insert(v.begin()+i,t);
                 return v;
             }
-            i++;
-        }
-        
-        for(int i=0;i<n;i++){
+            
             if(t[0]>=v[i][0] and t[1]<=v[i][1]){
                 return v;
             }
+            i++;
         }
         
         i=0;
@@ -67,7 +66,8 @@ public:
                     ans.push_back(v[i]);
                     i++;
                 }
-                break;
+                
+                return ans;
             }
             ans.push_back(v[i]);
             i++;
