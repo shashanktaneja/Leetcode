@@ -13,7 +13,7 @@ class Solution {
 public:
     vector<int> v;
     
-    void inorder(TreeNode *root){
+    void inorder(TreeNode* &root){
         if(root==NULL){
             return;
         }
@@ -23,7 +23,7 @@ public:
         inorder(root->right);
     }
     
-    bool isValidBST(TreeNode* root) {
+    bool isValidBST(TreeNode* &root) {
         v.clear();
         bool ans = true;
         
