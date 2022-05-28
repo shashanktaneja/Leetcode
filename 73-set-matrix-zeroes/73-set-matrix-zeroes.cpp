@@ -23,26 +23,14 @@ public:
         for(int i=1;i<m;i++){
             for(int j=1;j<n;j++){
                 if(v[i][j]==0){
-//                     if(i==0 and j==0){
-                        
-//                     }
-//                     else if(i==0){
-                        
-//                     }
-//                     else if(j==0){
-                        
-//                     }
-//                     else{
-                        v[i][0] = 0;
-                        v[0][j] = 0;
-                    // }
+                    v[i][0] = 0;
+                    v[0][j] = 0;
                 }
             }
         }
         
         for(int i=1;i<m;i++){
             if(v[i][0]==0){
-                cout<<i<<endl;
                 for(int j=1;j<n;j++){
                     v[i][j] = 0;
                 }
