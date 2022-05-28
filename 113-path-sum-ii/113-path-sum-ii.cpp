@@ -10,10 +10,8 @@
  * };
  */
 class Solution {
-public:
-    vector<vector<int>> ans;
-    
-    void solve(int s,TreeNode* &root,int t,vector<int> v){
+public:    
+    void solve(int s,TreeNode* &root,int t,vector<int> v,vector<vector<int>> &ans){
         if(root->left==NULL and root->right==NULL){
             if(s+root->val==t){
                 v.push_back(root->val);
@@ -25,24 +23,24 @@ public:
         
         if(root->left){
             v.push_back(root->val);
-            solve(s+root->val,root->left,t,v);
+            solve(s+root->val,root->left,t,v,ans);
             v.pop_back();
         }
         
         if(root->right){
             v.push_back(root->val);
-            solve(s+root->val,root->right,t,v);
+            solve(s+root->val,root->right,t,v,ans);
             v.pop_back();
         }
     }
     
     vector<vector<int>> pathSum(TreeNode* &root, int t) {
-        ans.clear();
+        vector<vector<int>> ans;
         if(root==NULL){
             return ans;
         }
         vector<int> v;
-        solve(0,root,t,v);        
+        solve(0,root,t,v,ans);        
         return ans;
     }
 };
