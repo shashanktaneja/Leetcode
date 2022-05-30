@@ -2,12 +2,13 @@ class Solution {
 public:
     int ans = 0;
     vector<vector<int>> mp;
+    vector<bool> vis;
     
-    void dfs(int cur,bool *vis){
+    void dfs(int cur){
         vis[cur] = true;
         for(auto nbr:mp[cur]){
             if(!vis[nbr]){
-                dfs(nbr,vis);
+                dfs(nbr);
             }
         }
     }
@@ -16,6 +17,7 @@ public:
         int n = v.size();
         ans = 0;
         mp.resize(n);
+        vis.resize(n);
         
         for(int i=0;i<n;i++){
             for(int j=0;j<n;j++){
@@ -24,14 +26,15 @@ public:
                 }                
             }
         }
-        
-        bool vis[205];        
-        memset(vis,false,sizeof(vis));
+            
+        for(int i=0;i<n;i++){
+            vis[i] = false;
+        }
         
         for(int i=0;i<n;i++){
             if(!vis[i]){
                 ans++;
-                dfs(i,vis);
+                dfs(i);
             }
         }
                 
