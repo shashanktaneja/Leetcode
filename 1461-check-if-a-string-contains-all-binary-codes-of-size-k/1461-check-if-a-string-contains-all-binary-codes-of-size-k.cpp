@@ -7,17 +7,20 @@ public:
         }
         
         string tp = s.substr(0,k);
-        set<string> S;
-        S.insert(tp);
+        // set<string> S;
+        map<string,int> mp;
+        // S.insert(tp);
+        mp[tp]++;
         
         for(int i=1;i<n-k+1;i++){
             tp+=s[i+k-1];
             tp.erase(tp.begin());
-            S.insert(tp);
+            // S.insert(tp);
+            mp[tp]++;
         }
         
         int req = (1<<k);
         
-        return S.size()>=req ? true : false;
+        return mp.size()>=req ? true : false;
     }
 };
