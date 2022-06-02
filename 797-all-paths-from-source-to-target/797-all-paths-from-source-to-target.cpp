@@ -2,7 +2,7 @@ class Solution {
 public:
     vector<vector<int>> ans;
     
-    void solve(int cur,vector<int> v,int n,vector<vector<int>>& mp){
+    void solve(int cur,vector<int> &v,int n,vector<vector<int>>& mp){
         if(cur==n-1){
             ans.push_back(v);
             return;
