@@ -11,7 +11,7 @@ public:
             return;
         }
         
-        for(auto nbr:mp[cur]){
+        for(auto &nbr:mp[cur]){
             solve(nbr,v,n,mp);
         }
         
