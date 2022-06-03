@@ -1,22 +1,18 @@
 class NumMatrix {
 public:
-    vector<vector<int>> v;
+    int v[201][201];
     int m,n;
     
     NumMatrix(vector<vector<int>>& tp) {
-        v.clear();
         m = tp.size();
-        n = tp[0].size();
-        
+        n = tp[0].size();        
         
         for(int i=0;i<m;i++){
-            vector<int> temp;
             int s=0;
             for(int j=0;j<n;j++){
                 s+=tp[i][j];
-                temp.push_back(s);
+                v[i][j] = s;
             }       
-            v.push_back(temp);
         }           
     }
     
