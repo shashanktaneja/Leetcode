@@ -18,13 +18,12 @@ public:
             in[edges[i][1]]++;
         }
         
-        vector<bool> vis(n,false);
         queue<int> q;
         
         for(int i=0;i<n;i++){
             if(in[i]==1){
                 q.push(i);
-                vis[i] = true;
+                in[i]--;
             }       
         }
         
@@ -34,16 +33,13 @@ public:
             int si = q.size();
             while(si--){
                 int cur = q.front();
-                q.pop();
-                
+                q.pop();                
                 for(auto nbr:mp[cur]){
                     in[nbr]--;
-                    if(!vis[nbr] and in[nbr]==1){
+                    if(in[nbr]==1){
                         q.push(nbr);
-                        vis[nbr] = true;
                     }
-                }
-                
+                }                
                 cnt--;
             }
         }
