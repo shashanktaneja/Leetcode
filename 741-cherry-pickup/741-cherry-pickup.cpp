@@ -1,68 +1,6 @@
 class Solution {
 public:
-    int dp[50][50];
     int dp2[50][50][50];
-    
-    int solve(int n,vector<vector<int>> &v){
-        for(int i=1;i<n;i++){
-            if(v[0][i]==-1){
-                dp[0][i] = -1;
-            }
-            else if(dp[0][i-1]==-1){
-                dp[0][i] = -1;
-            }
-            else{
-                dp[0][i] = dp[0][i-1];
-                if(v[0][i]==1){
-                    dp[0][i]++;
-                }
-            }            
-        }
-        
-        for(int i=1;i<n;i++){
-            if(v[i][0]==-1){
-                dp[i][0] = -1;
-            }
-            else if(dp[i-1][0]==-1){
-                dp[i-1][0] = -1;
-            }
-            else{
-                dp[i][0] = dp[i-1][0];
-                if(v[i][0]==1){
-                    dp[i][0]++;
-                }
-            }            
-        }
-        
-        for(int i=1;i<n;i++){
-            for(int j=1;j<n;j++){
-                if((v[i][j]==-1) ||(dp[i-1][j]==-1 and dp[i][j-1]==-1)){
-                    dp[i][j] = -1;
-                }
-                else if(dp[i-1][j]==-1){
-                    dp[i][j] = dp[i][j-1];
-                    if(v[i][j]==1){
-                        dp[i][j]++;
-                    }
-                }
-                else if(dp[i][j-1]==-1){
-                    dp[i][j] = dp[i-1][j];
-                    if(v[i][j]==1){
-                        dp[i][j]++;
-                    }
-                }
-                else{
-                    dp[i][j] = max(dp[i-1][j],dp[i][j-1]);
-                    if(v[i][j]==1){
-                        dp[i][j]++;
-                    }
-                }
-            }
-        }
-        
-        return dp[n-1][n-1];
-    }
-    
     int solve2(vector<vector<int>> &v,int n,int r1,int c1,int c2){        
         int r2 = r1+c1-c2;
         
