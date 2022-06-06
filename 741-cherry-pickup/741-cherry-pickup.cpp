@@ -27,15 +27,8 @@ public:
     }
     
     int cherryPickup(vector<vector<int>>& v) {
-        int n = v.size();
-        
-        for(int i=0;i<50;i++){
-            for(int j=0;j<50;j++){
-                for(int k=0;k<50;k++){
-                    dp2[i][j][k] = -1;
-                }
-            }
-        }
+        int n = v.size();        
+        memset(dp2,-1,sizeof(dp2));
         
         if(v[n-1][n-1]==1){
             dp2[n-1][n-1][n-1] = 1;
