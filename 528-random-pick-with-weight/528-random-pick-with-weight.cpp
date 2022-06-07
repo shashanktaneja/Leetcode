@@ -2,12 +2,12 @@ class Solution {
 public:
     vector<int> v;
     int k=0;
-    int si;
+    int n;
     
     Solution(vector<int>& w) {
         v.clear();
         priority_queue<pair<int,int>> tp;
-        int n = w.size();
+        n = w.size();
         int sum = 0;
         for(int i=0;i<n;i++){
             sum += w[i];
@@ -29,12 +29,12 @@ public:
             }
         }      
         
-        si = v.size();
+        n = v.size();
     }
     
     int pickIndex() {
         int ans = v[k];
-        k = (k+1)%si;
+        k = (k+1)%n;
         return ans;
     }
 };
