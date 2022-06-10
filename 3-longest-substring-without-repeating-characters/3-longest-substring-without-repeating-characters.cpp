@@ -4,10 +4,6 @@ public:
         int n = s.size();
         int ans = 0;
         
-        if(n==0){
-            return 0;
-        }
-        
         map<char,int> freq;
         
         int i=0,j=0,cur;
