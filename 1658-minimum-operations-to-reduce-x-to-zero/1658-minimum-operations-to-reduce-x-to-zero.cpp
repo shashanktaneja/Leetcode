@@ -1,20 +1,98 @@
 class Solution {
 public:
-    int minOperations(vector<int>& nums, int x) {
-    unordered_map<int, int> left;
-    int res = INT_MAX;
-    for (auto l = 0, sum = 0; l <= nums.size() && sum <= x; ++l) {
-        left[sum] = l;
-        if (l < nums.size())
-            sum += nums[l];
-    }
-    for (int r = nums.size() - 1, sum = 0; r >= 0 && sum <= x; --r) {
-        auto it = left.find(x - sum);
-        if (it != end(left) && r + 1 >= it->second) {
-            res = min(res, (int)nums.size() - r - 1 + it->second);
+    int minOperations(vector<int>& v, int k) {
+        int ans = INT_MAX;
+        vector<int> pre;
+        vector<int> suff;
+        int n = v.size();
+        int sum = 0;
+        
+        for(int i=0;i<n;i++){
+            sum+=v[i];
+            pre.push_back(sum);
         }
-        sum += nums[r];
+        
+        sum = 0;
+        
+        for(int i=n-1;i>=0;i--){
+            sum+=v[i];
+            suff.push_back(sum);
+        }
+        
+        reverse(suff.begin(),suff.end());
+        
+        for(int i=0;i<n;i++){
+            int cur = pre[i];
+            if(cur==k){
+                ans = min(ans,i+1);
+                break;
+            }
+            else{
+                int idx = -1;
+                int req = (k-pre[i]);
+                if(req<=0){
+                    break;
+                }
+                int s=i+1,e=n-1;
+                while(s<=e){
+                    int mid = (s+e)/2;
+                    if(suff[mid]==req){
+                        idx = mid;
+                        break;
+                    }
+                    else if(suff[mid]<req){
+                        e = mid-1;
+                    }
+                    else{
+                        s = mid+1;
+                    }
+                }
+                
+                if(idx!=-1){
+                    int cur = (i+1)+(n-idx);
+                    ans = min(ans,cur);
+                }
+            }
+        }
+        
+        for(int i=n-1;i>=0;i--){
+            int cur = suff[i]; 
+            if(cur==k){
+                ans = min(ans,n-i);
+                break;
+            }
+            else{
+                int idx = -1;
+                int req = (k-suff[i]);
+                if(req<=0){
+                    break;
+                }
+                int s=0,e=i-1;
+                while(s<=e){
+                    int mid = (s+e)/2;
+                    if(pre[mid]==req){
+                        idx = mid;
+                        break;
+                    }
+                    else if(pre[mid]>req){
+                        e = mid-1;
+                    }
+                    else{
+                        s = mid+1;
+                    }
+                }
+                
+                if(idx!=-1){
+                    int cur = (idx+1)+(n-i);
+                    ans = min(ans,cur);
+                }
+            }
+        }        
+        
+        if(ans==INT_MAX){
+            return -1;
+        }
+        
+        return ans;
     }
-    return res == INT_MAX ? -1 : res;
-}
 };
