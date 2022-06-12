@@ -3,7 +3,7 @@ public:
     int maximumUniqueSubarray(vector<int>& v) {
         int n = v.size();
         int ans = 0;
-        map<int,int> mp;
+        vector<int> mp(10001,0);
         
         int i=0,j=0;
         int sum = 0;
