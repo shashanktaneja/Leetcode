@@ -1,22 +1,20 @@
 class Solution {
 public:
-    int minOperations(vector<int>& v, int k) {
+    int minOperations(vector<int>& v, int &k) {
         int ans = INT_MAX;
-        vector<int> pre;
-        vector<int> suff;
+        vector<int> pre,suff;
         int n = v.size();
-        int sum = 0;
         
-        for(int i=0;i<n;i++){
-            sum+=v[i];
-            pre.push_back(sum);
+        pre.push_back(v[0]);
+        
+        for(int i=1;i<n;i++){
+            pre.push_back((pre[i-1]+v[i]));
         }
         
-        sum = 0;
+        suff.push_back(v[n-1]);
         
-        for(int i=n-1;i>=0;i--){
-            sum+=v[i];
-            suff.push_back(sum);
+        for(int i=n-2;i>=0;i--){
+            suff.push_back((suff[n-i-2]+v[i]));
         }
         
         reverse(suff.begin(),suff.end());
