@@ -7,7 +7,7 @@ public:
     int longestStrChain(vector<string>& v) {
         int n = v.size();
         int ans = 1;        
-        map<string,int> dp;
+        unordered_map<string,int> dp;
                 
         sort(v.begin(),v.end(),compare);
         
