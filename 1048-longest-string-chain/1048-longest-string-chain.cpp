@@ -16,8 +16,7 @@ public:
             dp[word] = 1;
             
             for(int j=0;j<v[i].size();j++){
-                string cur = v[i];
-                cur.erase(j,1);
+                string cur = word.substr(0,j)+word.substr(j+1);
                 if(dp.find(cur)!=dp.end()){
                     dp[word] = max(dp[word],dp[cur]+1);
                 }
