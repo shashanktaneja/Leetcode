@@ -2,37 +2,48 @@ class Solution {
 public:
     string longestPalindrome(string s) {
         int n = s.length();
-        int max_len = 1;
-        int low,high;
-        int start = 0;
-
-        for(int i=1;i<n;i++){
-            //find the max even length palindrome
-            low = i-1;
-            high = i;
-            while(low>=0 and high<n and s[low]==s[high]){
-                if(high-low+1>max_len){
-                    start = low;
-                    max_len = high-low+1;
-                }
-                low--;
-                high++;
-            }
-
-            //find the max odd length palindrome
-            low = i-1;
-            high = i+1;
-            while(low>=0 and high<n and s[low]==s[high]){
-                if(high-low+1>max_len){
-                    start = low;
-                    max_len = high-low+1;
-                }
-                low--;
-                high++;
+        int ans = 1;
+        int dp[n][n];
+        string tp = s.substr(0,1);
+        
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                dp[i][j] = -1;
             }
         }
-
-        string longest = s.substr(start,max_len);
-        return longest;
+        
+        for(int i=0;i<n;i++){
+            dp[i][i] = 1;
+        }
+        
+        int a=-1,b=-1;
+        
+        for(int len=2;len<=n;len++){
+            for(int j=0;j<=n-len;j++){
+                int st = j,e=j+len-1;
+                if(s[st]==s[e]){
+                    if((st+1==e) || (dp[st+1][e-1]!=-1)){
+                        if((st+1)==e){
+                            dp[st][e] = max(dp[st][e],2);
+                        }
+                        else{
+                            dp[st][e] = max(dp[st][e],dp[st+1][e-1]+2);
+                        }
+                        
+                        if(dp[st][e]>ans){
+                            ans = dp[st][e];
+                            a=st;
+                            b=e;
+                        }
+                    }
+                }                
+            }
+        }
+        
+        if(a!=-1 and b!=-1){
+            tp = s.substr(a,b-a+1);
+        }        
+        
+        return tp;
     }
 };
