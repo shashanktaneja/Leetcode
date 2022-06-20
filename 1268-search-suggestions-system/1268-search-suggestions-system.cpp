@@ -7,8 +7,10 @@ public:
         sort(v.begin(),v.end());
         
         int i=0;
+        string cur = "";
+        
         for(int l=1;l<=m;l++){
-            string cur = t.substr(0,l);
+            cur += t[l-1];
             vector<string> tp;
             while(i<n){
                 if(v[i].substr(0,l)!=cur){
