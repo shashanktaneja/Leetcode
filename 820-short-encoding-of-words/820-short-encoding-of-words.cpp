@@ -6,11 +6,9 @@ class node{
   public:
     char data;
     unordered_map<char,node*> children;
-    bool terminal;
     
     node(char d){
         data = d;
-        terminal = false;
     }
 };
 
@@ -35,8 +33,6 @@ public:
                 temp = n;
             }
         }
-        
-        temp->terminal = true;
     }
     
     bool find(string &s){
