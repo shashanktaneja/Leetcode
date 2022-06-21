@@ -18,25 +18,27 @@ public:
             int mid = (s+e)/2;
             
             int j=l,k=b;
-            priority_queue<int> pq;
+            vector<int> pq;
             for(int i=0;i<mid;i++){
-                pq.push(tp[i]);
+                pq.push_back(tp[i]);
             }
+            sort(pq.begin(),pq.end(),greater<int>());
+            int i=0;
             
-            while(!pq.empty()){
-                int cur = pq.top();
+            while(i<mid){
+                int cur = pq[i];
                 
                 if(cur==0){
-                    pq.pop();
+                    i++;
                     continue;
                 }
                 
                 if(j>0){
                     j--;
-                    pq.pop();
+                    i++;
                 }
                 else if(k>=cur){
-                    pq.pop();
+                    i++;
                     k-=cur;
                 }
                 else{
@@ -44,7 +46,7 @@ public:
                 }
             }
             
-            if(pq.empty()){
+            if(i>=mid){
                 ans = mid;
                 s = mid+1;
             }
