@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int furthestBuilding(vector<int>& v, int b, int l) {
+    int furthestBuilding(vector<int>& v, int &b, int &l) {
         int n = v.size();
         int ans = 0;
         int s=0,e=n-1;
@@ -16,7 +16,6 @@ public:
         
         while(s<=e){
             int mid = (s+e)/2;
-            bool val = false;
             
             int j=l,k=b;
             priority_queue<int> pq;
