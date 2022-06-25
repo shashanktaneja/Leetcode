@@ -18,11 +18,7 @@ public:
     bool checkPossibility(vector<int>& v) {
         int n = v.size();
         int i=0;
-        
-        if(val(v)){
-            return true;
-        }
-        
+    
         while(i<n-1){
             if(v[i]<=v[i+1]){
                 i++;
@@ -41,10 +37,11 @@ public:
                     return true;
                 }
             }
-            break;
+            
+            return false;
         }        
         
         
-        return false;        
+        return true;        
     }
 };
