@@ -1,6 +1,6 @@
 class Solution {
 public:    
-    int maxScore(vector<int>& v, int k) {
+    int maxScore(vector<int>& v, int &k) {
         int n = v.size();      
         vector<int> pre,suff;
         int s=0;
