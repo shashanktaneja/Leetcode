@@ -6,18 +6,16 @@ public:
         int n = s.size();
         
         for(int i=0;i<n;i++){
-            // cout<<(s[i]-'a')<<endl;
             mp[(s[i]-'a')]++;
         }
         
         int ans = 0;
-        for(char ch='a';ch<='z';ch++){
-            if(mp[(ch-'a')]>0){
-                pq.push(mp[(ch-'a')]);
+        for(auto x:mp){
+            if(x>0){
+                pq.push(x);                
             }
         }
         
-        // return ans;
         int lt = pq.top();
         pq.pop();
         
