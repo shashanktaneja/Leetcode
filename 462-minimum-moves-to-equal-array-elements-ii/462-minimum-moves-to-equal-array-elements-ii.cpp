@@ -4,7 +4,7 @@ public:
         int n = v.size();
         int ans = 0;
         int s=0,m=0;
-        sort(v.begin(),v.end());
+        nth_element(v.begin(),v.begin()+(n/2),v.end());
         
         m = v[n/2];
         
