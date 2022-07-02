@@ -6,18 +6,20 @@ public:
         int dp[n+1];
         memset(dp,0,sizeof(dp));
         
-        for(int i=1;i<n;i++){
+        if(n==1){
+            return 0;
+        }
+        
+        int maxdiff = max(-v[0],-v[1]);
+        
+        if(v[1]>v[0]){
+            dp[1] = v[1]-v[0];
+        }
+        
+        for(int i=2;i<n;i++){
             dp[i] = dp[i-1];
-            for(int j=0;j<i;j++){
-                if(v[i]>v[j]){
-                    if(j<2){
-                        dp[i] = max(dp[i],v[i]-v[j]);
-                    }
-                    else{
-                        dp[i] = max(dp[i],v[i]-v[j]+dp[j-2]);
-                    }                    
-                }
-            }
+            dp[i] = max(dp[i],maxdiff+v[i]);            
+            maxdiff = max(maxdiff,dp[i-2]-v[i]);
         }
         
         return dp[n-1];
