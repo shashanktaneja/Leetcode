@@ -2,7 +2,7 @@ class Solution {
 public:
     vector<int> ans;
     
-    void solve(int cur,int n){
+    void solve(int cur,int &n){
         if(cur>n){
             return;
         }
@@ -13,7 +13,7 @@ public:
         }
     }
     
-    vector<int> lexicalOrder(int n) {
+    vector<int> lexicalOrder(int &n) {
         ans.clear();
         for(int i=1;i<10;i++){
             solve(i,n);
