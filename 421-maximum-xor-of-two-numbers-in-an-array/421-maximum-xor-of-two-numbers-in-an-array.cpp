@@ -2,11 +2,9 @@ class node{
   public:
     int data;
     unordered_map<int,node*> children;
-    bool terminal;
     
     node(int d){
         data = d;
-        terminal = false;
     }
 };
 
@@ -17,7 +15,7 @@ class trie{
         root = new node(2);
     }
     
-    void insert(int n){
+    void insert(int &n){
         node *head = root;
         for(int i=31;i>=0;i--){
             if(((n>>i)&1)==0){
@@ -41,11 +39,9 @@ class trie{
                 }
             }
         }
-        
-        head->terminal = true;
     }
     
-    int find(int n){
+    int find(int &n){
         int ans = 0;
         node *head = root;
         
