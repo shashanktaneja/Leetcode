@@ -60,7 +60,7 @@ int dy[4] = {0,-1,0,1};
 vector<string> ans;
 int vis[13][13];
 
-void dfs(int x,int y,int n,int m,node *root,string s,vector<vector<char>>&v){    
+void dfs(int x,int y,int &n,int &m,node *root,string s,vector<vector<char>>&v){    
     if(root->terminal){
         root->terminal = false;
         ans.push_back(s);
@@ -87,7 +87,6 @@ public:
         int n = v[0].size();
         trie *t = new trie();
         ans.clear();
-        // vector<string> finalans;
         
         for(int i=0;i<v2.size();i++){
             t->insert(v2[i]);
@@ -106,10 +105,6 @@ public:
                 }
             }
         }
-        
-        // for(auto x:ans){
-        //     finalans.push_back(x);
-        // }
         
         return ans;
     }
