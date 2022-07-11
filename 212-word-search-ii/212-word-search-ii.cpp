@@ -36,23 +36,6 @@ class trie{
         
         head->terminal = true;
     }
-    
-    bool find(string &s){
-        int n = s.size();
-        node* head = root;
-        
-        for(int i=0;i<n;i++){
-            char cur = s[i];
-            if(head->children.count(cur)){
-                head = head->children[cur];
-            }
-            else{
-                return false;
-            }
-        }
-        
-        return true;
-    }
 };
 
 int dx[4] = {1,0,-1,0};
