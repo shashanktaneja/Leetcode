@@ -28,7 +28,7 @@ public:
                 else if(p[j-1]=='*'){
                     dp[i][j] = dp[i][j-2];      //empty
                     
-                    if(j-2>=0 and (p[j-2]=='.' || p[j-2]==s[i-1])){
+                    if((p[j-2]=='.' || p[j-2]==s[i-1])){
                         dp[i][j] |= dp[i-1][j];
                     }
                 }
