@@ -31,7 +31,7 @@ public:
         return ht;
     }
     
-    int solve(TreeNode* root){
+    int countNodes(TreeNode* root) {
         if(root==NULL){
             return 0;
         }
@@ -43,15 +43,9 @@ public:
             return (1<<l)-1;
         }
         
-        int left = solve(root->left);
-        int right = solve(root->right);
+        int left = countNodes(root->left);
+        int right = countNodes(root->right);
                 
         return left+right+1;
-    }
-    
-    int countNodes(TreeNode* root) {
-        int ans = solve(root);
-                
-        return ans;
     }
 };
