@@ -3,9 +3,15 @@ public:
     int canCompleteCircuit(vector<int>& v, vector<int>& c) {
         int n = c.size();
         int idx = -1;
+        int tp = 0;
         
         for(int i=0;i<n;i++){
             v[i] = (v[i]-c[i]);
+            tp+=v[i];
+        }
+        
+        if(tp<0){
+            return -1;
         }
         
         int i=0;
@@ -26,26 +32,6 @@ public:
             }
             
             i++;
-        }
-        
-        if(idx==-1){
-            return -1;
-        }
-        
-        csum = 0;
-        
-        for(int i=idx;i<n;i++){
-            if(csum+v[i]<0){
-                return -1;
-            }
-            csum += v[i];
-        }
-        
-        for(int i=0;i<idx;i++){
-            if(csum+v[i]<0){
-                return -1;
-            }
-            csum += v[i];
         }
         
         return idx;
