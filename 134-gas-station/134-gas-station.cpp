@@ -1,12 +1,11 @@
 class Solution {
 public:
-    int canCompleteCircuit(vector<int>& g, vector<int>& c) {
+    int canCompleteCircuit(vector<int>& v, vector<int>& c) {
         int n = c.size();
         int idx = -1;
-        vector<int> v;
         
         for(int i=0;i<n;i++){
-            v.push_back(g[i]-c[i]);
+            v[i] = (v[i]-c[i]);
         }
         
         int i=0;
@@ -33,8 +32,8 @@ public:
             return -1;
         }
         
-        bool val = true;
         csum = 0;
+        
         for(int i=idx;i<n;i++){
             if(csum+v[i]<0){
                 return -1;
