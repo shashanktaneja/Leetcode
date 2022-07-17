@@ -12,7 +12,7 @@ class Solution {
 public:
     vector<string> topKFrequent(vector<string>& v, int k) {
         int n = v.size();
-        map<string,int> mp;
+        unordered_map<string,int> mp;
         vector<string> ans;
         
         for(int i=0;i<n;i++){
