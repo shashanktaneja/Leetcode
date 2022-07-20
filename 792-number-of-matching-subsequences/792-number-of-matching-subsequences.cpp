@@ -10,15 +10,8 @@ public:
             tp[(s[i]-'a')].push_back(i);
         }
         
-        map<int,int> mp;
-        
         for(int i=0;i<v.size();i++){
             bool val = true;
-            
-            for(int j=0;j<26;j++){
-                mp[j] = -1;
-            }
-                
             int lt = -1;
             
             for(int j=0;j<v[i].size();j++){
@@ -44,7 +37,6 @@ public:
                     }                    
                 }
                 
-                // mp[pos] = idx;
                 lt = idx;
             }
             
