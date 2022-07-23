@@ -1,73 +1,68 @@
 class Solution {
 public:
-
-    void merge(int left, int mid, int right, vector<pair<int, int>>& arr,vector<int>& count)
-    {
-        vector<pair<int, int>> temp(right - left + 1);
+    vector<int> ans;
+    vector<pair<int,int>> v2;
+    
+    void merge(int s,int mid,int e){
+        int i=s,j=mid+1;
+        vector<pair<int,int>> temp;
         
-        int i = left;
-        int j = mid + 1;
-        int k = 0;
-        
-        while(i <= mid && j <= right)
-        {
-            if(arr[i].first <= arr[j].first)
-            {
-                temp[k++] = arr[j++]; 
+        while(i<=mid and j<=e){
+            if(v2[i].first<=v2[j].first){
+                ans[v2[i].second] += (j-mid-1);
+                temp.push_back(v2[i]);
+                i++;
             }
-            else
-            {
-                count[arr[i].second] += (right - j + 1);
-                
-                temp[k++] = arr[i++];
+            else{
+                temp.push_back(v2[j]);
+                j++;
             }
         }
         
-        while(i <= mid)
-        {
-            temp[k++] = arr[i++];
+        while(i<=mid){
+            temp.push_back(v2[i]);
+            ans[v2[i].second] += (j-mid-1);
+            i++;
         }
         
-        while(j <= right)
-        {
-            temp[k++] = arr[j++];
+        while(j<=e){
+            temp.push_back(v2[j]);
+            j++;            
         }
         
-        for(int l = left; l <= right; l++)
-        arr[l] = temp[l - left];
-        
-    }
-                
-    void mergeSort(int left, int right, vector<pair<int, int>>& arr, vector<int>& count)
-    {
-        if(left >= right)
-        {
-            return;
+        for(int k=s;k<=e;k++){
+            // cout<<v[k]<<" ";
+            v2[k] = temp[k-s];
         }
-
-        int mid = left + (right - left) / 2;
+        // cout<<endl;
+        // cout<<s<<" "<<e<<endl;
         
-        mergeSort(left, mid, arr, count);
-        mergeSort(mid + 1, right, arr, count);
-        
-        merge(left, mid, right, arr, count);
     }
     
-	vector<int> countSmaller(vector<int>& nums) {
-	    
-        int n=nums.size();
-	    vector<pair<int, int>> arr;
+    void mergesort(int s,int e){
+        if(s>=e){
+            return;
+        }
         
-	    for(int i = 0; i < n; i++)
-	    {
-	        arr.push_back({nums[i], i});
-	    }
-	    
-	    vector<int> count(n, 0);
-	    
-	    mergeSort(0, n - 1, arr, count);
-	    
-	    return count;
-	}
-  
+        int mid = (s+e)/2;
+        mergesort(s,mid);
+        mergesort(mid+1,e);
+        
+        merge(s,mid,e);
+    }
+    
+    vector<int> countSmaller(vector<int>& v) {
+        int n = v.size();
+        ans.clear();
+        v2.clear();
+        
+        for(int i=0;i<n;i++){
+            v2.push_back({v[i],i});
+            ans.push_back(0);
+        }
+        
+        mergesort(0,n-1);
+        
+        return ans;
+    }
 };
