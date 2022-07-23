@@ -1,69 +1,73 @@
 class Solution {
 public:
-    vector<int> ans;
-    vector<pair<int,int>> v2;
-    
-    void merge(int s,int mid,int e){
-        // cout<<s<<" "<<e<<endl;
-        int i=s,j=mid+1;
-        vector<pair<int,int>> temp;
+
+    void merge(int left, int mid, int right, vector<pair<int, int>>& arr,vector<int>& count)
+    {
+        vector<pair<int, int>> temp(right - left + 1);
         
-        while(i<=mid and j<=e){
-            if(v2[i].first<=v2[j].first){
-                ans[v2[i].second] += (j-mid-1);
-                temp.push_back({v2[i].first,v2[i].second});
-                i++;
+        int i = left;
+        int j = mid + 1;
+        int k = 0;
+        
+        while(i <= mid && j <= right)
+        {
+            if(arr[i].first <= arr[j].first)
+            {
+                temp[k++] = arr[j++]; 
             }
-            else{
-                temp.push_back({v2[j].first,v2[j].second});
-                j++;
+            else
+            {
+                count[arr[i].second] += (right - j + 1);
+                
+                temp[k++] = arr[i++];
             }
         }
         
-        while(i<=mid){
-            temp.push_back({v2[i].first,v2[i].second});
-            ans[v2[i].second] += (j-mid-1);
-            i++;
+        while(i <= mid)
+        {
+            temp[k++] = arr[i++];
         }
         
-        while(j<=e){
-            temp.push_back({v2[j].first,v2[j].second});
-            j++;            
+        while(j <= right)
+        {
+            temp[k++] = arr[j++];
         }
         
-        for(int k=s;k<=e;k++){
-            // cout<<v[k]<<" ";
-            v2[k] = temp[k-s];
-        }
-        // cout<<endl;
-        // cout<<s<<" "<<e<<endl;
+        for(int l = left; l <= right; l++)
+        arr[l] = temp[l - left];
         
     }
-    
-    void mergesort(int s,int e){
-        if(s>=e){
+                
+    void mergeSort(int left, int right, vector<pair<int, int>>& arr, vector<int>& count)
+    {
+        if(left >= right)
+        {
             return;
         }
+
+        int mid = left + (right - left) / 2;
         
-        int mid = (s+e)/2;
-        mergesort(s,mid);
-        mergesort(mid+1,e);
+        mergeSort(left, mid, arr, count);
+        mergeSort(mid + 1, right, arr, count);
         
-        merge(s,mid,e);
+        merge(left, mid, right, arr, count);
     }
     
-    vector<int> countSmaller(vector<int>& v) {
-        int n = v.size();
-        ans.clear();
-        v2.clear();
+	vector<int> countSmaller(vector<int>& nums) {
+	    
+        int n=nums.size();
+	    vector<pair<int, int>> arr;
         
-        for(int i=0;i<n;i++){
-            v2.push_back({v[i],i});
-            ans.push_back(0);
-        }
-        
-        mergesort(0,n-1);
-        
-        return ans;
-    }
+	    for(int i = 0; i < n; i++)
+	    {
+	        arr.push_back({nums[i], i});
+	    }
+	    
+	    vector<int> count(n, 0);
+	    
+	    mergeSort(0, n - 1, arr, count);
+	    
+	    return count;
+	}
+  
 };
