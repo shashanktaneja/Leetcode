@@ -11,19 +11,25 @@
  */
 class Solution {
 public:
-    bool inorder(TreeNode* &root, long min,long max){
+    bool solve(TreeNode*root,long long int mi,long long int ma){
         if(root==NULL){
             return true;
         }
         
-        if(root->val>min and root->val<max){
-            return (inorder(root->left,min,root->val) && inorder(root->right,root->val,max));
+        if(root->val>mi and root->val<ma and solve(root->left,mi,root->val) and solve(root->right,root->val,ma)){
+            return true;
         }
         
         return false;
     }
     
-    bool isValidBST(TreeNode* &root) {
-        return inorder(root,LONG_MIN,LONG_MAX);
+    bool isValidBST(TreeNode* root) {
+        long long int mi = INT_MIN,ma = INT_MAX;        
+        mi--;
+        ma++;
+        
+        bool ans = solve(root,mi,ma);
+        
+        return ans;
     }
 };
