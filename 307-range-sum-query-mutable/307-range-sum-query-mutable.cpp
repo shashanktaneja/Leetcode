@@ -21,17 +21,17 @@ public:
         return solve(qlow, qhigh, 2 * idx + 1) + solve(qlow, qhigh, 2 * idx + 2);
     }
     
-    void up(int qlow, int qhigh,int idx, int val){
-        if(seg[idx].l==qlow and seg[idx].r==qhigh){
+    void up(int i,int idx, int val){
+        if(seg[idx].l==i and seg[idx].r==i){
             seg[idx].data = val;
             return;
         }
         
-        if(seg[2*idx+1].r>=qlow){
-            up(qlow, qhigh,2*idx+1,val);
+        if(seg[2*idx+1].r>=i){
+            up(i,2*idx+1,val);
         }
         else{
-            up(qlow, qhigh,2*idx+2,val);
+            up(i,2*idx+2,val);
         }
         
         seg[idx].data = seg[2*idx+1].data+seg[2*idx+2].data;
@@ -66,7 +66,7 @@ public:
     }
     
     void update(int i, int val) {
-        up(i,i,0,val);
+        up(i,0,val);
     }
     
     int sumRange(int x, int y) {
