@@ -1,6 +1,6 @@
 class Solution {
 public:
-    vector<string> findAndReplacePattern(vector<string>& v, string s) {
+    vector<string> findAndReplacePattern(vector<string>& v, string &s) {
         vector<string> ans;
         int n = v.size();
         int si = s.size();
