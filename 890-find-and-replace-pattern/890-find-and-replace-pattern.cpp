@@ -7,11 +7,7 @@ public:
         string tp = s;
         
         for(int i=0;i<n;i++){
-            map<char,char> mp;
-            for(char ch='a';ch<='z';ch++){
-                mp[ch] = '0';
-            }
-            
+            vector<char> mp(26,'0');            
             vector<int> vis(26,0);
             bool val = true;
             
@@ -19,8 +15,8 @@ public:
                 char cur = s[j];
                 char req = v[i][j];
                 
-                if((mp[cur]==req) || (mp[cur]=='0' and vis[(req-'a')]==0)){
-                    mp[cur] = req;
+                if((mp[(cur-'a')]==req) || (mp[(cur-'a')]=='0' and vis[(req-'a')]==0)){
+                    mp[(cur-'a')] = req;
                     vis[req-'a'] = 1;
                 }
                 else{
