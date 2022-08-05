@@ -19,9 +19,8 @@ public:
         } 
         
         solve(root->right);
-        int cur = root->val;
-        root->val += sum;
-        sum += cur;
+        sum += root->val;
+        root->val = sum;
         solve(root->left);
     }
     
