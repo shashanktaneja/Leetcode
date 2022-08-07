@@ -1,27 +1,52 @@
 class Solution {
 public:
+    bool valid(int sum,vector<int> &v,int m,int n){
+        int cur = 0;
+        int cnt = 0;
+        int i=0;
+        
+        while(i<n){
+            if(cur+v[i]>sum){
+                if(cnt+1>=m){
+                    return false;
+                }
+                cur = 0;
+                cnt++;
+            }
+            else{
+                cur += v[i];
+                i++;
+            }
+        }
+        
+        // if(cnt<m){
+        //     return false;
+        // }
+        
+        return true;
+    }
+    
     int splitArray(vector<int>& v, int m) {
         int n = v.size();
-        int dp[1001][51];
+        int ans = INT_MAX;
         
-        for(int i=0;i<=n;i++){
-            for(int j=0;j<=m;j++){
-                dp[i][j] = INT_MAX;
-            }
+        int sum = 0;
+        for(int i=0;i<n;i++){
+            sum += v[i];
         }
         
-        dp[0][0] = 0;
-        
-        for(int i=1;i<=n;i++){
-            for(int j=1;j<=m;j++){
-                int cur = 0;
-                for(int k=i;k>0;k--){
-                    cur += v[k-1];
-                    dp[i][j] = min(dp[i][j],max(cur,dp[k-1][j-1]));
-                }
+        int s=0,e=sum;
+        while(s<=e){
+            int mid = (s+e)/2;
+            if(valid(mid,v,m,n)){
+                ans = mid;
+                e = mid-1;
             }
+            else{
+                s = mid+1;
+            }            
         }
         
-        return dp[n][m];
+        return ans;
     }
 };
