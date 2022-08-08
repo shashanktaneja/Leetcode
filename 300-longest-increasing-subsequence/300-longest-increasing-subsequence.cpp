@@ -9,17 +9,16 @@ public:
         
         for(int i=1;i<n;i++){
             int idx = lower_bound(tp.begin(),tp.end(),v[i])-tp.begin();
-            
             if(idx==tp.size()){
                 tp.push_back(v[i]);
-                int si = tp.size();
-                ans = max(ans,si);
             }
             else{
                 tp[idx] = v[i];
             }
+            
+            int si = tp.size();
+            ans = max(ans,si);
         }
-        
         
         
         return ans;
