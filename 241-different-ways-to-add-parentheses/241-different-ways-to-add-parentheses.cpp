@@ -1,6 +1,12 @@
 class Solution {
 public:
+    map<string,vector<int>> mp;
+    
     vector<int> solve(string s){
+        if(mp.find(s)!=mp.end()){
+            return mp[s];
+        }
+        
         vector<int> ans;
         
         for(int i=0;i<s.size();i++){
@@ -28,10 +34,11 @@ public:
             ans.push_back(stoi(s));
         }
         
-        return ans;        
+        return mp[s] = ans;        
     }
     
     vector<int> diffWaysToCompute(string &s) {
+        mp.clear();
         vector<int> ans = solve(s);   
         
         return ans;        
