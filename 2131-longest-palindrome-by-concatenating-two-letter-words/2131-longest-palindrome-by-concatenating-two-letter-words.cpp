@@ -9,7 +9,6 @@ public:
         for(int i=0;i<n;i++){
             mp[v[i]]++;
         }
-        int ma = 0;
         
         for(auto x:mp){
             string cur = x.first;
@@ -17,6 +16,7 @@ public:
                 if((x.second)%2!=0){
                     val = true;
                 }
+                
                 ans += 4*((x.second)/2);
                 mp[x.first]=0;                
             }
