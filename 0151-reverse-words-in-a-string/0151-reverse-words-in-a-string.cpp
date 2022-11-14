@@ -1,6 +1,6 @@
 class Solution {
 public:
-    string reverseWords(string s) {
+    string reverseWords(string &s) {
         int i=0;
         int n = s.size();
         string ans;
