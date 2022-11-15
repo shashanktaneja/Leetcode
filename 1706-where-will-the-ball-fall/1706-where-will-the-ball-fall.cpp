@@ -3,7 +3,7 @@ public:
     vector<int> findBall(vector<vector<int>>& v) {
         int m = v.size();
         int n = v[0].size();
-        int dp[m][n];
+        vector<vector<int> > dp(m, vector<int> (n,0));
         
         if(n==1){
             return {-1};
@@ -104,12 +104,7 @@ public:
                 }               
             }
         }
-        
-        vector<int> ans;
-        for(int i=0;i<n;i++){
-            ans.push_back(dp[0][i]);
-        }
-        
-        return ans;
+                
+        return dp[0];
     }
 };
